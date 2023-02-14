@@ -10,7 +10,6 @@ export const sleep = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
 export const checkPermissions = (authorities: string, roles: string[] = []) => {
-  console.log("roles:", roles, ":", authorities);
   if (!roles.length) return true;
   const index = roles?.indexOf(authorities);
   if (index >= 0) {

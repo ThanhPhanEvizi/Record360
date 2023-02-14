@@ -15,6 +15,7 @@ import {
   selectStatus,
 } from "../../../redux/auth/authSlice";
 import { PAGES, STATUS_AXIOS } from "../../../constants";
+import { LoginProps } from "../../../types/models/auth";
 
 const LoginForm = () => {
   const history = useHistory();
@@ -70,7 +71,7 @@ const LoginForm = () => {
     };
   }, [dispatch]);
 
-  const handleFormSubmit = (formValue: any) => {
+  const handleFormSubmit = (formValue: LoginProps) => {
     dispatch(fetchLogin(formValue));
   };
 

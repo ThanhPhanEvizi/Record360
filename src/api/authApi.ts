@@ -7,7 +7,7 @@ const authApi = {
   async login(params: LoginProps) {
     const isSuccess = randomTrueOrFalse();
     const isAdmin = randomTrueOrFalse();
-    await sleep(2000);
+    await sleep(5000);
     if (isSuccess) {
       return {
         success: {

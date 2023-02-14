@@ -13,7 +13,7 @@ function App() {
 
   return (
     <>
-      <div>
+      {/* <div>
         {listRouter.map((route, index) => {
           return (
             <Typography
@@ -24,7 +24,7 @@ function App() {
             </Typography>
           );
         })}
-      </div>
+      </div> */}
       <AppRouter
         authorities={role}
         publicRoutes={publicRoutes}

@@ -1,4 +1,5 @@
 import { BasicRoute, PrivateRoute } from "./components/elements/AppRouter";
+import PrivateLayout from "./components/Layout/PrivateLayout";
 import { PAGES, USERS_ROLE } from "./constants";
 import ForgotPasswordPage from "./page/ForgotPassword";
 import GroupPage from "./page/Group";
@@ -11,7 +12,7 @@ import SettingPage from "./page/Setting";
 export const publicRoutes: BasicRoute[] = [
   {
     path: "",
-    // component: BaseLayout,
+    // component: PrivateLayout,
     exact: false,
     routes: [
       //   { path: PAGES.HOME_PAGE, component: HomePage, roles: [USERS_ROLE.ADMIN] },
@@ -42,24 +43,28 @@ export const privateRoutes: BasicRoute[] = [
         component: SettingPage,
         roles: [USERS_ROLE.ADMIN],
         label: "Setting Page",
+        exact: false,
         routes: [
           {
             path: PAGES.HOME_PAGE,
             component: HomePage,
             roles: [USERS_ROLE.ADMIN],
             label: "Home Page",
+            exact: true,
           },
           {
             path: PAGES.PROFILE,
             component: ProfilePage,
             roles: [USERS_ROLE.ADMIN],
             label: "Profile",
+            exact: true,
           },
           {
             path: PAGES.MESS,
             component: MessPage,
             roles: [USERS_ROLE.ADMIN],
             label: "Mess",
+            exact: true,
           },
         ],
       },
@@ -68,18 +73,21 @@ export const privateRoutes: BasicRoute[] = [
         component: HomePage,
         roles: [],
         label: "Home Page",
+        exact: true,
       },
       {
         path: PAGES.PROFILE,
         component: ProfilePage,
         roles: [USERS_ROLE.ADMIN],
         label: "Profile",
+        exact: true,
       },
       {
         path: PAGES.MESS,
         component: MessPage,
         roles: [USERS_ROLE.ADMIN],
         label: "Mess",
+        exact: true,
       },
     ],
   },

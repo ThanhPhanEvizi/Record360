@@ -8,3 +8,4 @@ export * from "./UiModal";
 export * from "./UiScrollBar";
 export * from "./UiToolTip";
 export * from "./UiLoadingButton";
+export * from "./CustomSwitch";

@@ -11,7 +11,7 @@ import { isObject, omit } from "lodash";
 // import { AdminRole } from "~/types/models/admin";
 // import { checkPermissions, getObjNthItem } from "~/utils/helpers";
 import { Typography } from "@mui/material";
-import { Col } from ".";
+import { Col, CustomSwitch } from ".";
 import { checkPermissions } from "../../until/helpers";
 import { useAppDispatch } from "../../app/hooks";
 import { addRouter } from "../../redux/app/appSlice";
@@ -82,17 +82,10 @@ export const AppRouter = memo(function AppRouter({
   unauthorizedPage: UnauthorizedPage = UnauthorizedPageDefault,
 }: AppRouterProps) {
   const dispatch = useAppDispatch();
-  const a = [];
   const renderPublicRoute = (route: BasicRoute, parentPath = "") => {
     const { path, component: RouteComponent = EmptyLayout, exact } = route;
     const fullPath =
       parentPath && parentPath !== "/" ? `${parentPath}${path}` : path;
-
-    // Handle redirect URLs
-    if (route.redirect) {
-      console.log("hihi");
-      //   return renderRedirectRoute(route);
-    }
 
     if (route.routes) {
       const subRoutes = route?.routes?.map((subRoute) =>
@@ -113,7 +106,6 @@ export const AppRouter = memo(function AppRouter({
         />
       );
     }
-    console.log("public:", route);
 
     dispatch(addRouter({ path: route.path, label: route.label }));
     return (
@@ -139,21 +131,7 @@ export const AppRouter = memo(function AppRouter({
     const fullPath =
       parentPath && parentPath !== "/" ? `${parentPath}${path}` : path;
     if (!hasPermission) {
-      if (redirect) {
-        console.log("private redirect hasPermission");
-        return;
-        // return renderRedirectRoute(route, authorities);
-      }
-      console.log("private !redirect hasPermission");
       return;
-      //   return (
-      //     <Route
-      //       key={`private-${fullPath}`}
-      //       {...omitRouteRenderProps(route)}
-      //       path={fullPath}
-      //       render={(props) => <UnauthorizedPage {...props} />}
-      //     />
-      //   );
     }
     if (route.routes) {
       const subRoutes = route?.routes?.map((subRoute) =>
@@ -176,6 +154,7 @@ export const AppRouter = memo(function AppRouter({
       );
     }
     dispatch(addRouter({ path: route.path, label: route.label }));
+
     return (
       <Route
         key={`private-${fullPath}`}
@@ -209,7 +188,7 @@ export const AppRouter = memo(function AppRouter({
           return renderPrivateRoute(route);
         })}
       </Switch>
-      <Switch>{renderNotFoundRoute()}</Switch>
+      {/* <Switch>{renderNotFoundRoute()}</Switch> */}
     </BrowserRouter>
   );
 });
